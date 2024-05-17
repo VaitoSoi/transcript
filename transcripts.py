@@ -8,16 +8,17 @@ import time
 import datetime
 import requests
 import yaml
+import platform
 
 wh_files = ""
 wh_notification = ""
-mode = None
+mode = -1
 
 with open("config.yaml", "r") as f:
     webhook = yaml.safe_load(f)
     wh_notification = webhook["notification"]
     wh_files = webhook["files"]
-    mode = webhook["mode"]
+    mode = list(map(int, webhook["mode"]))
 
 def log(msg: str) -> None:
     if wh_notification:
@@ -26,7 +27,7 @@ def log(msg: str) -> None:
         })
     print(msg)
 
-log(f"Start session at {datetime.datetime.now()}")
+log(f"Start session at {datetime.datetime.now()} on {platform.node()} -- {platform.system()} {platform.release()}")
 
 model_path = "distil-whisper/distil-large-v3"
 model = WhisperForConditionalGeneration.from_pretrained(model_path)
@@ -68,7 +69,7 @@ for index, file in enumerate(files):
         skipped_file.write(f"{file}\n")
         continue
     length = ms(round(audio_data.info.length * 1000))
-    if mode != -1 and audio_data.info.length <= mode[0] and mode[1] <= audio_data.info.length:
+    if mode != -1 and not (mode[0] <= audio_data.info.length and audio_data.info.length <= mode[1]):
         log(f"Skipped {file} (out of range, {length})")
         skipped_file.write(f"{file}\n")
         continue
