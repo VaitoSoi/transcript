@@ -9,7 +9,6 @@ filelock==3.14.0
 frozenlist==1.4.1
 fsspec==2024.5.0
 future==1.0.0
-hikari==2.0.0.dev125
 huggingface-hub==0.23.0
 idna==3.7
 imageio-ffmpeg==0.4.9

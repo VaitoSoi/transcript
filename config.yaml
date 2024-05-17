@@ -1,3 +1,5 @@
 notification: https://discord.com/api/webhooks/1240975800350806077/oBEZDkt0OQiXOmryMy0m_FixVP51VrrNy9XFND3esmIRjlFsRJaUXpeNX7L5zjTuqwg-
 files: https://discord.com/api/webhooks/1240973389737234432/JiiDHqlCX8VLn2ucD_WuOyJCP6zFcRcuOgyIjZx2-cQCI1C7VnJNcLxZczDG2p75fkSo
 mode: [0, 12000]
+input: ./archive/
+output: ./transcripts/
