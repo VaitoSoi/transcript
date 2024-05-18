@@ -164,5 +164,5 @@ cython_debug/
 # Local file
 archive/
 transcripts/
-archive.zip
+*.zip
 test.*

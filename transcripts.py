@@ -18,7 +18,7 @@ with open("config.yaml", "r") as f:
     webhook = yaml.safe_load(f)
     wh_notification = webhook["notification"]
     wh_files = webhook["files"]
-    mode = list(map(int, webhook["mode"]))
+    mode = list(map(int, webhook["mode"])) if type(webhook["mode"]) == list else webhook["mode"]
 
 def log(msg: str) -> None:
     if wh_notification:
